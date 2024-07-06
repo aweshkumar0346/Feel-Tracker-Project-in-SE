@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/gh/creativetimofficial/public-assets@master/soft-ui-design-system-builder/v1.0.7/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/creativetimofficial/public-assets@master/soft-ui-design-system-builder/v1.0.7/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./static/css/theme.css">
+    <link rel="stylesheet" href="./static/css/loopple/loopple.css">
+    <title>Sentiment Analysis Results</title>
+</head>
+<style>
+    body, html {
+        background-color: rgb(252, 252, 253); 
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+    }
+
+    .container {
+        max-width: 1800px; 
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    .py-5 {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+    .flex-container {
+        display: flex;
+    }
+    .review-list {
+        flex: 1;
+    }
+    .plot-image {
+        flex: 1;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand" href="/" rel="tooltip" data-placement="bottom" style="font-size: larger;"><b>Feel Tracker</b></a>
+        </div>
+    </nav>
+    <br><br>
+    <h3>&nbsp;&nbsp;Sentiment Analysis Results</h3>
+    
+    <div class="flex-container">
+        <div class="review-list">
+            <ul>
+                {% for snippet, sentiment in review_data %}
+                <li>Review:</li>
+                <ul>
+                    {% for line in snippet %}
+                    <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+                Positive: {{ sentiment.pos }} | Neutral: {{ sentiment.neu }} | Negative: {{ sentiment.neg }} | Compound: {{ sentiment.compound }}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="plot-image">
+            <img src="{{ plot_image }}" alt="Sentiment Plot">
+        </div>
+    </div>
+
+</body>
+</html>
